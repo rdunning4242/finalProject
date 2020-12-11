@@ -1,0 +1,29 @@
+CREATE SCHEMA workoutApp;
+CREATE TABLE user(
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	username VARCHAR(255) NOT NULL,
+	firstName VARCHAR(255) NOT NULL,
+	lastName VARCHAR(255) NOT NULL,
+	password VARCHAR(255) NOT NULL
+	) ENGINE= InnoDb;
+
+CREATE TABLE team(
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	teamName VARCHAR(255) NOT NULL,
+	teamDescription VARCHAR(510) NOT NULL,
+	ownerID INT UNSIGNED NOT NULL,
+	FOREIGN KEY (ownerID) REFERENCES user(id)
+	) ENGINE= InnoDb;
+
+CREATE TABLE workout(
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	athleteID INT UNSIGNED NOT NULL,
+	workoutName VARCHAR(255) NOT NULL,
+	workoutDescription VARCHAR(510) NOT NULL,
+	FOREIGN KEY (athleteID) REFERENCES user(id)
+	) ENGINE= InnoDb;
+INSERT INTO user (username, firstName, lastName, password) VALUES ("rdunning4242", "Ryan", "Dunning", "drowssap");
+INSERT INTO team (teamName, teamDescription, ownerID) VALUES ("Fredonia XC", "SUNY Fredonia's XC team", 1);
+INSERT INTO workout (athleteID, workoutName, workoutDescription) VALUES (1, "6 Mile Tempo", "Tempo to work on endurance");
+	
+	
